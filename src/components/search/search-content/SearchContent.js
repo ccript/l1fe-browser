@@ -2,6 +2,7 @@ import SearchAIContent from "./SearchAIContent";
 import SearchResult from "./SearchResult";
 import { DummySearchResults } from "@/const/DummySearchResults";
 import RelatedQueries from "@/components/search/search-content/RelatedQueries";
+import VideoContent from "./VideoContent";
 
 const SearchContent = ({ searchParams }) => {
   const aiResultsData = DummySearchResults?.aiResultsData;
@@ -11,11 +12,7 @@ const SearchContent = ({ searchParams }) => {
   const currentFilter = searchParams?.filter;
 
   return currentFilter === "Videos" ? (
-    <div className="w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
-      <div className="max-w-[630px] 2xl:max-w-[650px] border rounded-2xl p-5">
-        <h1>Video Results</h1>
-      </div>
-    </div>
+    <VideoContent />
   ) : (
     <>
       <section className="relative w-full border-b border-opacity-30">
