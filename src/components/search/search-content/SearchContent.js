@@ -2,18 +2,14 @@ import SearchAIContent from "./SearchAIContent";
 import SearchResult from "./SearchResult";
 import { DummySearchResults } from "@/const/DummySearchResults";
 import RelatedQueries from "@/components/search/search-content/RelatedQueries";
-import VideoContent from "./VideoContent";
+import NextButton from "@/components/shared/NextButton";
 
 const SearchContent = ({ searchParams }) => {
   const aiResultsData = DummySearchResults?.aiResultsData;
   const searchResults = DummySearchResults?.searchResults;
   const relatedQueries = DummySearchResults?.relatedQueries;
 
-  const currentFilter = searchParams?.filter;
-
-  return currentFilter === "Videos" ? (
-    <VideoContent />
-  ) : (
+  return (
     <>
       <section className="relative w-full border-b border-opacity-30">
         <SearchAIContent aiResultsData={aiResultsData} />
@@ -41,11 +37,12 @@ const SearchContent = ({ searchParams }) => {
                 </div>
               );
             })}
-            <div className="pb-24">
+            <div className="pb-6">
               <RelatedQueries relatedQueries={relatedQueries} />
             </div>
           </div>
         </div>
+        <NextButton />
       </section>
     </>
   );

@@ -15,7 +15,7 @@ const SearchBar = () => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && input.trim()) {
       const queryParams = new URLSearchParams(searchParams.toString());
-      queryParams.set("searchQuery", input.trim());
+      queryParams.set("q", input.trim());
       router.push(`/search?${queryParams.toString()}`);
     }
   };
