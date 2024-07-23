@@ -11,7 +11,7 @@ const Search = ({ searchParams }) => {
         <NavigationLinks searchParams={searchParams} />
       </aside>
       <section className="w-full text-start">
-        <SearchContent />
+        <SearchContent searchParams={searchParams} />
       </section>
     </main>
   );
