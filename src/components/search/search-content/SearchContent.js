@@ -1,49 +1,42 @@
-import SearchAIContent from "./SearchAIContent";
-import SearchResult from "./SearchResult";
-import { DummySearchResults } from "@/const/DummySearchResults";
-import RelatedQueries from "@/components/search/search-content/RelatedQueries";
-import NextButton from "@/components/shared/NextButton";
+"use client";
 
-const SearchContent = ({ searchParams }) => {
-  const aiResultsData = DummySearchResults?.aiResultsData;
-  const searchResults = DummySearchResults?.searchResults;
-  const relatedQueries = DummySearchResults?.relatedQueries;
+import React, { useState } from "react";
+import { DummySearchResults } from "@/const/DummySearchResults";
+import Navbar from "@/components/navbar/Navbar";
+import NavigationLinks from "@/components/navbar/NavigationLinks";
+import SearchMain from "./SearchMain";
+import NewsContent from "@/components/news/NewsContent";
+import VideoContent from "./VideoContent";
+import ImagesContent from "@/components/images-route/ImagesContent";
+
+const SearchContent = ({ data }) => {
+  const [activeTab, setActiveTab] = useState("all");
+
+  // const relatedQueries = DummySearchResults?.relatedQueries;
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "all":
+        return <SearchMain data={data.web} />
+      case "images":
+        return <ImagesContent query={data?.query?.original} />
+      case "news":
+        return <NewsContent data={data.news} />
+      case "videos":
+        return <VideoContent data={data.videos} />
+      default:
+        return null;
+    }
+  };
+  if (!data) {
+    <div>loading...</div>
+  }
 
   return (
     <>
-      <section className="relative w-full border-b border-opacity-30">
-        <SearchAIContent aiResultsData={aiResultsData} />
-      </section>
-      <section className="flex flex-col gap-4 container mx-auto px-3 md:px-20 2xl:px-6 text-start py-2 my-6">
-        <div className="text-sm my-6 px-6">
-          <h4 className="">
-            Showing results for <b>Dallas, TX, US</b>
-          </h4>
-        </div>
-
-        <div className="grid grid-flow-row grid-cols-12 justify-center w-full gap-2 py ">
-          <div className="col-span-full md:col-span-7 text-sm 2xl:text-base">
-            {searchResults.map((results, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`${
-                    index == 0
-                      ? "border-x border-t rounded-t-xl border-opacity-40"
-                      : ""
-                  }`}
-                >
-                  <SearchResult results={results} />
-                </div>
-              );
-            })}
-            <div className="pb-6">
-              <RelatedQueries relatedQueries={relatedQueries} />
-            </div>
-          </div>
-        </div>
-        <NextButton />
-      </section>
+      <Navbar defaultSearch={data?.query?.original} />
+      <NavigationLinks activeTab={activeTab} setActiveTab={setActiveTab} />
+      {renderContent()}
     </>
   );
 };

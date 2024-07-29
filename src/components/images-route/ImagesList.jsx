@@ -5,17 +5,16 @@ const ImagesList = ({ imagesData, selectedImage, setSelectedImage }) => {
     <div className="columns-1 md:columns-2 lg:columns-3 space-y-3">
       {imagesData?.map((image, index) => (
         <div
-          key={image.id}
-          className={`cursor-pointer p-2 border rounded-xl transition-transform duration-300 ${
-            selectedImage.id === image.id
-              ? "border-neutral-400"
-              : "border-transparent hover:scale-105"
-          }`}
+          key={image.page_fetched}
+          className={`cursor-pointer p-2 border rounded-xl transition-transform duration-300 ${selectedImage.id === image.id
+            ? "border-neutral-400"
+            : "border-transparent hover:scale-105"
+            }`}
           onClick={() => setSelectedImage(image)}
         >
           <div className="flex flex-col gap-2 rounded-xl">
             <Image
-              src={image?.imageThumbnail}
+              src={image?.thumbnail.src}
               width={500}
               height={338}
               className="rounded-xl object-cover w-full max-h-[500px] items-stretch"
@@ -23,7 +22,7 @@ const ImagesList = ({ imagesData, selectedImage, setSelectedImage }) => {
             />
             <div className="flex items-center gap-1">
               <Image
-                src={image?.sourceLogo}
+                src={image?.meta_url.favicon}
                 width={16}
                 height={16}
                 className="rounded size-4"

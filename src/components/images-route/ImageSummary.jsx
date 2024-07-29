@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, Download, Copy } from "lucide-react";
+import Link from "next/link";
 
 const ImageSummary = ({ selectedImage }) => {
   return (
@@ -7,11 +8,11 @@ const ImageSummary = ({ selectedImage }) => {
       <div className="w-full">
         <div className="space-y-1">
           <h1 className="text-lg font-medium line-clamp-2">
-            {selectedImage?.desc}
+            {selectedImage?.title}
           </h1>
           <div className="flex items-center gap-1">
             <Image
-              src={selectedImage?.sourceLogo}
+              src={selectedImage?.meta_url.favicon}
               width={16}
               height={16}
               className="rounded size-4"
@@ -21,7 +22,7 @@ const ImageSummary = ({ selectedImage }) => {
           </div>
         </div>
         <Image
-          src={selectedImage?.imageThumbnail}
+          src={selectedImage?.thumbnail.src}
           width={500}
           height={338}
           className="rounded-xl object-cover w-full my-6"
@@ -29,18 +30,18 @@ const ImageSummary = ({ selectedImage }) => {
         />
       </div>
       <div className="ms-2 flex items-center justify-start gap-8 text-blue-600">
-        <div className="flex flex-col items-center">
+        <Link href={selectedImage.url} className="flex flex-col items-center">
           <button className="rounded-full shadow-xl ring-1 ring-opacity-15 ring-neutral-500 p-3">
             <ArrowUpRight className="size-4" />
           </button>
           <span className="mt-1 text-neutral-500">Visit</span>
-        </div>
-        <div className="flex flex-col items-center">
+        </Link>
+        <Link href={selectedImage?.thumbnail?.src} className="flex flex-col items-center" target="_blank">
           <button className="rounded-full shadow-xl ring-1 ring-opacity-15 ring-neutral-500 p-3">
             <Download className="size-4" />
           </button>
           <span className="mt-1 text-neutral-500">Download</span>
-        </div>
+        </Link>
         <div className="flex flex-col items-center">
           <button className="rounded-full shadow-xl ring-1 ring-opacity-15 ring-neutral-500 p-3">
             <Copy className="size-4" />
