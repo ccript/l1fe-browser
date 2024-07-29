@@ -2,16 +2,18 @@ import React from "react";
 import Image from "next/image";
 
 import Link from "next/link";
-
+import { Eye } from "lucide-react";
 
 const VideoContent = ({ data }) => {
   return (
     <div className="w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
-
       {data?.results?.length > 0 ? (
         data?.results.map((video, index) => {
           return (
-            <div key={index} className="max-w-[730px] 2xl:max-w-[730px] border rounded-2xl">
+            <div
+              key={index}
+              className="max-w-[730px] 2xl:max-w-[730px] border rounded-2xl"
+            >
               <div className="flex gap-4 p-5">
                 <Link href={video.url} className="min-w-[192px]">
                   <Image
@@ -23,7 +25,10 @@ const VideoContent = ({ data }) => {
                   />
                 </Link>
                 <div className="">
-                  <Link href={video?.url} className="text-xs text-gray-400 flex items-center gap-x-3">
+                  <Link
+                    href={video?.url}
+                    className="text-xs text-gray-400 flex items-center gap-x-3"
+                  >
                     <Image
                       src={video?.meta_url?.favicon}
                       alt="logo"
@@ -31,19 +36,31 @@ const VideoContent = ({ data }) => {
                       height={16}
                       priority
                     />
-                    {video?.meta_url?.hostname}{" "}{video?.meta_url?.path}
+                    {video?.meta_url?.hostname} {video?.meta_url?.path}
                   </Link>
-                  <Link href={video?.url} className="text-lg text-[#7697E3]">{video.title}</Link>
-                  <div className="text-sm text-gray-400">{video.description}</div>
+                  <Link href={video?.url} className="text-lg text-[#7697E3]">
+                    {video.title}
+                  </Link>
+                  <div className="text-sm text-gray-400">
+                    {video.description}
+                  </div>
+                  <div className="flex items-center gap-x-3 mt-2">
+                    <div className="text-xs text-gray-400">{video?.age}</div>
+                    {/* <div className="text-xs text-gray-400 flex items-center gap-x-1">
+                      <Eye size={18} />
+                      {video?.views}
+                    </div> */}
+                  </div>
                 </div>
               </div>
             </div>
           );
         })
       ) : (
-        <div className='flex items-center justify-start mt-6'>No content available at the moment.</div>
-      )
-      }
+        <div className="flex items-center justify-start mt-6">
+          No content available at the moment.
+        </div>
+      )}
     </div>
   );
 };

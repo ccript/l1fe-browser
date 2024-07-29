@@ -19,13 +19,13 @@ const SearchContent = ({ data }) => {
   const renderContent = () => {
     switch (activeTab) {
       case "all":
-        return <SearchMain data={data.web} />;
+        return <SearchMain web={data?.web} mixed={data?.mixed} data={data} />;
       case "images":
         return <ImagesContent query={data?.query?.original} />;
       case "news":
-        return <NewsContent data={data.news} />;
+        return <NewsContent data={data?.news} />;
       case "videos":
-        return <VideoContent data={data.videos} />;
+        return <VideoContent data={data?.videos} />;
       default:
         return null;
     }

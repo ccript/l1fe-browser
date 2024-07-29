@@ -14,7 +14,7 @@ const SearchResult = ({ results }) => {
               src={results?.meta_url.favicon}
               height={30}
               width={30}
-              style={{ width: '30px', height: "30px" }}
+              style={{ width: "30px", height: "30px" }}
               alt={"search image"}
             />
           )}
@@ -23,7 +23,9 @@ const SearchResult = ({ results }) => {
             <div>
               <p>{results?.title}</p>
             </div>
-            <div className="text-neutral-500 font-medium">{results?.meta_url?.path} </div>
+            <div className="text-neutral-500 font-medium">
+              {results?.meta_url?.path}{" "}
+            </div>
           </div>
         </div>
         <Link href={results?.url}>

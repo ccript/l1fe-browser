@@ -2,12 +2,12 @@
 
 export const SearchAction = async (query) => {
   const response = await fetch(
-    `https://api.search.brave.com/res/v1/web/search?q=${query}&count=20&offset=1`,
+    `https://api.search.brave.com/res/v1/web/search?q=${query}&offset=0`,
     {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        "X-Subscription-Token": process.env.API_KEY
+        "X-Subscription-Token": process.env.API_KEY,
       },
     }
   );
@@ -22,11 +22,10 @@ export const SearchImageAction = async (query) => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        "X-Subscription-Token": process.env.API_KEY
+        "X-Subscription-Token": process.env.API_KEY,
       },
     }
   );
   const result = await response.json();
   return result;
 };
-
