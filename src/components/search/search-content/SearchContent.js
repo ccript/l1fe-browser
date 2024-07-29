@@ -1,37 +1,56 @@
 "use client";
-
 import React, { useState } from "react";
-import { DummySearchResults } from "@/const/DummySearchResults";
 import Navbar from "@/components/navbar/Navbar";
 import NavigationLinks from "@/components/navbar/NavigationLinks";
 import SearchMain from "./SearchMain";
 import NewsContent from "@/components/news/NewsContent";
 import VideoContent from "./VideoContent";
 import ImagesContent from "@/components/images-route/ImagesContent";
-
-const SearchContent = ({ data }) => {
+import { useSearchParams } from "next/navigation";
+const SearchContent = ({ data, query }) => {
   const [activeTab, setActiveTab] = useState("all");
+  const searchParams = useSearchParams();
+  const offset = searchParams.get("offset");
+  const currentOffset = parseInt(offset) || 1;
 
-  console.log(data);
-
-  // const relatedQueries = DummySearchResults?.relatedQueries;
+  // console.log(data);
 
   const renderContent = () => {
     switch (activeTab) {
       case "all":
-        return <SearchMain web={data?.web} faq={data?.faq} />;
+        return (
+          <SearchMain
+            web={data?.web}
+            faq={data?.faq}
+            currentOffset={currentOffset}
+            query={query}
+          />
+        );
       case "images":
         return <ImagesContent query={data?.query?.original} />;
       case "news":
-        return <NewsContent data={data?.news} />;
+        return (
+          <NewsContent
+            data={data?.news}
+            currentOffset={currentOffset}
+            query={query}
+          />
+        );
       case "videos":
-        return <VideoContent data={data?.videos} />;
+        return (
+          <VideoContent
+            data={data?.videos}
+            currentOffset={currentOffset}
+            query={query}
+          />
+        );
       default:
         return null;
     }
   };
+
   if (!data) {
-    <div>loading...</div>;
+    return <div>Loading...</div>;
   }
 
   return (

@@ -1,8 +1,8 @@
 "use server";
 
-export const SearchAction = async (query) => {
+export const SearchAction = async (query, offset = 0) => {
   const response = await fetch(
-    `https://api.search.brave.com/res/v1/web/search?q=${query}&offset=0`,
+    `https://api.search.brave.com/res/v1/web/search?q=${query}&offset=${offset}`,
     {
       method: "GET",
       headers: {

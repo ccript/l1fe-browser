@@ -3,10 +3,11 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { Eye } from "lucide-react";
+import NextButton from "@/components/shared/NextButton";
 
-const VideoContent = ({ data }) => {
+const VideoContent = ({ data, currentOffset,query }) => {
   return (
-    <div className="w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
+    <div className="space-y-4 w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
       {data?.results?.length > 0 ? (
         data?.results.map((video, index) => {
           return (
@@ -60,6 +61,9 @@ const VideoContent = ({ data }) => {
         <div className="flex items-center justify-start mt-6">
           No content available at the moment.
         </div>
+      )}
+      {data?.results?.length > 0 && (
+        <NextButton currentOffset={currentOffset} query={query} />
       )}
     </div>
   );
