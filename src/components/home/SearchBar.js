@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { Search } from "lucide-react";
 
-const SearchBar = () => {
-  const [input, setInput] = useState("");
+const SearchBar = ({ searchValue, placeHolder, customClass }) => {
+  const [input, setInput] = useState(searchValue);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -20,15 +21,27 @@ const SearchBar = () => {
     }
   };
 
+  const handleSearchButton = (e) => {
+    const queryParams = new URLSearchParams(searchParams.toString());
+    queryParams.set("q", input.trim());
+    router.push(`/search?${queryParams.toString()}`);
+  };
+
   return (
     <>
       <input
-        className="w-full md:w-[550px] h-14 px-4 placeholder:text-neutral-600 rounded-xl border border-opacity-55 shadow-md"
-        placeholder="Search anything, with absolute privacy..."
+        className={customClass}
+        placeholder={placeHolder}
         value={input}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
+      <button
+        onClick={handleSearchButton}
+        className="absolute top-4 right-4 text-neutral-500"
+      >
+        <Search size={25} />
+      </button>
     </>
   );
 };

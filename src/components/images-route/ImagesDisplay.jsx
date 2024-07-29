@@ -5,7 +5,7 @@ import ImagesList from "./ImagesList";
 import ImageSummary from "./ImageSummary";
 
 const ImagesDisplay = ({ imagesData }) => {
-  const [selectedImage, setSelectedImage] = useState(imagesData[0]);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   return (
     <>
@@ -13,12 +13,12 @@ const ImagesDisplay = ({ imagesData }) => {
         <div className="col-span-5 2xl:col-span-6 text-sm 2xl:text-base py-4">
           <ImagesList
             imagesData={imagesData}
-            setSelectedImage={setSelectedImage}
-            selectedImage={selectedImage}
+            setSelectedImageIndex={setSelectedImageIndex}
+            selectedImageIndex={selectedImageIndex}
           />
         </div>
         <div className="relative col-span-3 2xl:col-span-2 text-sm 2xl:text-base border-s py-6 px-3">
-          <ImageSummary selectedImage={selectedImage} />
+          <ImageSummary selectedImage={imagesData[selectedImageIndex]} />
         </div>
       </div>
     </>

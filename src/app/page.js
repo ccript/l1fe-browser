@@ -10,9 +10,14 @@ export default function Home() {
       <div className="">
         <Image src={text_logo} width={200} height={100} alt={"l1fe logo"} />
       </div>
-      <div className="w-full">
+      <div className="relative w-full md:w-[550px] h-14">
         <Suspense>
-          <SearchBar />
+          <SearchBar
+            placeHolder={"Search anything, with absolute privacy..."}
+            customClass={
+              "w-full h-full px-4 pr-12 placeholder:text-neutral-600 rounded-xl border border-opacity-55 shadow-md"
+            }
+          />
         </Suspense>
       </div>
       <div className="flex flex-col gap-5 items-center text-center">

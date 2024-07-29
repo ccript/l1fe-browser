@@ -22,12 +22,18 @@ const ImagesContent = ({ query }) => {
     fetchImageData();
   }, [query]);
 
+  console.log(imagesData);
+
   return (
     <section className="flex flex-col gap-4 px-3 text-start">
       {loading ? (
         <div>loading...</div>
+      ) : imagesData?.results.length > 0 ? (
+        <ImagesDisplay imagesData={imagesData.results} />
       ) : (
-        imagesData?.results.length > 0 ? <ImagesDisplay imagesData={imagesData.results} /> : <div className='flex items-center justify-start'>No content available at the moment.</div>
+        <div className="flex items-center justify-start">
+          No content available at the moment.
+        </div>
       )}
     </section>
   );
