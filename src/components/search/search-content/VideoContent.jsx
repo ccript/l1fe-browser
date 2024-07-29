@@ -7,11 +7,12 @@ import Link from "next/link";
 const VideoContent = ({ data }) => {
   return (
     <div className="w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
-      <div className="max-w-[730px] 2xl:max-w-[730px] border rounded-2xl">
-        {data?.results?.length > 0 ? (
-          data?.results.map((video, index) => {
-            return (
-              <div key={index} className="flex gap-4 p-5">
+
+      {data?.results?.length > 0 ? (
+        data?.results.map((video, index) => {
+          return (
+            <div key={index} className="max-w-[730px] 2xl:max-w-[730px] border rounded-2xl">
+              <div className="flex gap-4 p-5">
                 <Link href={video.url} className="min-w-[192px]">
                   <Image
                     width={192}
@@ -36,13 +37,13 @@ const VideoContent = ({ data }) => {
                   <div className="text-sm text-gray-400">{video.description}</div>
                 </div>
               </div>
-            );
-          })
-        ) : (
-          <div className='flex items-center justify-start mt-6'>No content available at the moment.</div>
-        )
-        }
-      </div>
+            </div>
+          );
+        })
+      ) : (
+        <div className='flex items-center justify-start mt-6'>No content available at the moment.</div>
+      )
+      }
     </div>
   );
 };

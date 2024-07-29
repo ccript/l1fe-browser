@@ -2,7 +2,7 @@
 
 export const SearchAction = async (query) => {
   const response = await fetch(
-    `https://api.search.brave.com/res/v1/web/search?q=${query}`,
+    `https://api.search.brave.com/res/v1/web/search?q=${query}&count=20&offset=1`,
     {
       method: "GET",
       headers: {

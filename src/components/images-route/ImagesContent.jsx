@@ -29,11 +29,11 @@ const ImagesContent = ({ query }) => {
       {loading ? (
         <div>loading...</div>
       ) : imagesData?.results.length > 0 ? (
+
         <ImagesDisplay imagesData={imagesData.results} />
+
       ) : (
-        <div className="flex items-center justify-start">
-          No content available at the moment.
-        </div>
+        <div className='flex items-center mt-8 lg:container lg:ml-16 '>No content available at the moment.</div>
       )}
     </section>
   );
