@@ -69,9 +69,6 @@ const SearchResult = ({ results }) => {
         )} */}
       </div>
       {/* {results?.mapData?.length > 0 && <MapResult mapData={results?.mapData} />} */}
-      {/* {results?.accordionData?.length > 0 && (
-        <AccordionResult accordionData={results?.accordionData} />
-      )} */}
     </>
   );
 };

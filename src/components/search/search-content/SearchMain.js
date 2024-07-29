@@ -1,25 +1,9 @@
 import React from "react";
 import SearchResult from "./SearchResult";
+import AccordionResult from "./AccordionResult";
 
-function SearchMain({ web, mixed, data }) {
-  // Initialize an empty array for the final results
-  const resultsArray = [];
+function SearchMain({ web, faq }) {
 
-  // Loop through each item in the mixed array
-  mixed.main.forEach((item) => {
-    if (item.type === "web" && web?.results[item.index]) {
-      resultsArray.push(web.results[item.index]);
-    } else if (item.type === "infobox" && data.infobox[item.index]) {
-      resultsArray.push(data.infobox[item.index]);
-    } else if (item.type === "news" && data.news.results) {
-      resultsArray.push(data.news.results[item.index]);
-    } else if (item.type === "videos" && data.videos.results) {
-      resultsArray.push(data.videos.results[item.index]);
-    } else if (item?.type === "faq" && data?.faq?.results) {
-      resultsArray.push(data?.faq?.results[item.index]);
-    }
-  });
-  // console.log(web);
   return (
     <section className="flex flex-col gap-4 container mx-auto px-3 md:px-20 2xl:px-6 text-start py-2 my-6">
       <div className="grid grid-flow-row grid-cols-12 justify-center w-full gap-2 py ">
@@ -28,13 +12,15 @@ function SearchMain({ web, mixed, data }) {
             web?.results?.map((results, index) => (
               <div
                 key={index}
-                className={`${
-                  index === 0
-                    ? "border-x border-t rounded-t-xl border-opacity-40"
-                    : ""
-                }`}
+                className={`${index === 0
+                  ? "border-x border-t rounded-t-xl border-opacity-40"
+                  : ""
+                  }`}
               >
                 <SearchResult results={results} />
+                {faq?.results.length > 0 && index === 1 && (
+                  <AccordionResult accordionData={faq?.results} />
+                )}
               </div>
             ))
           ) : (

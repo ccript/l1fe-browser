@@ -19,7 +19,7 @@ const SearchContent = ({ data }) => {
   const renderContent = () => {
     switch (activeTab) {
       case "all":
-        return <SearchMain web={data?.web} mixed={data?.mixed} data={data} />;
+        return <SearchMain web={data?.web} faq={data?.faq} />;
       case "images":
         return <ImagesContent query={data?.query?.original} />;
       case "news":
