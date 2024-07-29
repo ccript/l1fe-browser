@@ -9,32 +9,43 @@ const SearchResult = ({ results }) => {
     <>
       <div className="p-6">
         <div className="flex gap-3 item-center">
-          <div className="size-[40px] border bg-blue-200 rounded-lg" />
+          {results?.meta_url.favicon && (
+            <Image
+              src={results?.meta_url.favicon}
+              height={30}
+              width={30}
+              style={{ width: "30px", height: "30px" }}
+              alt={"search image"}
+            />
+          )}
+
           <div className="flex flex-col text-xs gap-1">
             <div>
               <p>{results?.title}</p>
             </div>
-            <div className="text-neutral-500 font-medium">{results?.path} </div>
+            <div className="text-neutral-500 font-medium">
+              {results?.meta_url?.path}{" "}
+            </div>
           </div>
         </div>
-        <Link href={`#`}>
+        <Link href={results?.url}>
           <h1 className="text-blue-700 text-lg hover:underline">
-            {results?.linkTitle}{" "}
+            {results?.url}{" "}
           </h1>
         </Link>
         <div className="flex">
-          <p>{results?.description}</p>
-          {results?.image && (
+          <p dangerouslySetInnerHTML={{ __html: results?.description }} />
+          {/* {results?.meta_url.favicon && (
             <Image
-              src={results?.image}
-              className="object-contain"
+              src={results?.meta_url.favicon}
+              height={100}
               width={100}
-              height={75}
+              style={{ width: '120px', height: "auto" }}
               alt={"search_img_1"}
             />
-          )}
+          )} */}
         </div>
-        {results?.contact && (
+        {/* {results?.contact && (
           <div className="flex flex-col gap-2  text-sm">
             <div className="flex justify-between w-full gap-2 mt-4">
               <div className="w-1/2">
@@ -55,12 +66,9 @@ const SearchResult = ({ results }) => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
-      {results?.mapData?.length > 0 && <MapResult mapData={results?.mapData} />}
-      {results?.accordionData?.length > 0 && (
-        <AccordionResult accordionData={results?.accordionData} />
-      )}
+      {/* {results?.mapData?.length > 0 && <MapResult mapData={results?.mapData} />} */}
     </>
   );
 };

@@ -27,7 +27,7 @@ const SearchAIContent = ({ aiResultsData }) => {
             <div className="col-span-8 space-y-3 text-sm 2xl:text-base">
               <p>{aiResultsData?.description}</p>
               <ul className="space-y-3 max-w-[70%]">
-                {aiResultsData?.companies.map((company, index) => (
+                {/* {aiResultsData?.companies.map((company, index) => (
                   <li key={index} className="">
                     <div>
                       <p>
@@ -35,10 +35,10 @@ const SearchAIContent = ({ aiResultsData }) => {
                       </p>
                     </div>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </div>
-            <div className="col-span-4 space-y-3 border-l px-4">
+            {/* <div className="col-span-4 space-y-3 border-l px-4">
               <div className="flex flex-col">
                 <div className="flex">
                   <div>
@@ -62,7 +62,7 @@ const SearchAIContent = ({ aiResultsData }) => {
               <div>
                 <p className="text-neutral-500 font-semibold">Follow Up</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
