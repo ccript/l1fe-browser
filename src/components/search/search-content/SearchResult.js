@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import MapResult from "./MapResult";
 import Image from "next/image";
-import AccordionResult from "./AccordionResult";
 
 const SearchResult = ({ results }) => {
   return (
@@ -19,22 +18,23 @@ const SearchResult = ({ results }) => {
             />
           )}
 
-          <div className="flex flex-col text-xs gap-1">
-            <div>
-              <p>{results?.title}</p>
-            </div>
-            <div className="text-neutral-500 font-medium">
-              {results?.meta_url?.path}{" "}
+          <div className="flex flex-col text-xs gap-1 line-clamp-3">
+            <p className="line-clamp-3">{results?.title}</p>
+            <div className="text-neutral-500 font-medium ">
+              <p className="line-clamp-3">{results?.meta_url?.path}</p>{" "}
             </div>
           </div>
         </div>
         <Link href={results?.url}>
-          <h1 className="text-blue-700 text-lg hover:underline">
-            {results?.url}{" "}
+          <h1 className="text-blue-700 text-lg hover:underline line-clamp-3">
+            <p className=" line-clamp-3">{results?.url}</p>
           </h1>
         </Link>
         <div className="flex">
-          <p dangerouslySetInnerHTML={{ __html: results?.description }} />
+          <p
+            className=""
+            dangerouslySetInnerHTML={{ __html: results?.description }}
+          />
           {/* {results?.meta_url.favicon && (
             <Image
               src={results?.meta_url.favicon}

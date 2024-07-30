@@ -7,6 +7,7 @@ import NewsContent from "@/components/news/NewsContent";
 import VideoContent from "./VideoContent";
 import ImagesContent from "@/components/images-route/ImagesContent";
 import { useSearchParams } from "next/navigation";
+
 const SearchContent = ({ data, query }) => {
   const [activeTab, setActiveTab] = useState("all");
   const searchParams = useSearchParams();
@@ -21,9 +22,11 @@ const SearchContent = ({ data, query }) => {
         return (
           <SearchMain
             web={data?.web}
+            infobox={data?.infobox}
             faq={data?.faq}
             currentOffset={currentOffset}
             query={query}
+            setActiveTab={setActiveTab}
           />
         );
       case "images":
