@@ -33,13 +33,11 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
     setActiveTab("images");
   };
 
-  console.log(infobox);
-
   return (
     <div className="flex flex-col gap-2 border rounded-xl">
       <div className="border-b">
         <div className="space-y-3 p-6">
-          <div className="flex gap-2">
+          <div className="flex gap-3 justify-between">
             <div className="space-y-1">
               <Link
                 href={`${infobox?.url}`}
@@ -67,13 +65,13 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
             {infobox?.images?.length === 1 && (
               <button
                 onClick={handleImageTab}
-                className=" min-w-28 min-h-28 px-3 rounded-xl bg-neutral-100"
+                className=" min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
               >
                 <Image
                   src={infobox?.images[0]?.src}
-                  className="w-full h-full object-contain rounded-xl"
-                  width={160}
-                  height={160}
+                  className=" size-20 object-contain rounded-xl"
+                  width={80}
+                  height={80}
                   alt={infobox?.images[0]?.alt}
                 />
               </button>

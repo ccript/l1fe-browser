@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NextButton from "../shared/NextButton";
+import { Dot } from "lucide-react";
 const NewsContent = ({ data, currentOffset, query }) => {
   return (
     <div className="w-full space-y-4 container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
@@ -9,7 +10,7 @@ const NewsContent = ({ data, currentOffset, query }) => {
           return (
             <div
               key={index}
-              className="max-w-[730px] 2xl:max-w-[730px] border rounded-2xl"
+              className="max-w-[630px] 2xl:max-w-[630px] border rounded-2xl"
             >
               <div className="flex gap-4 p-5">
                 <div className="">
@@ -25,13 +26,16 @@ const NewsContent = ({ data, currentOffset, query }) => {
                     />
                     <div className="flex items-center">
                       <span> {news.meta_url.hostname}</span>
-                      {/* <span>
+                      <span>
                         <Dot size={25} />
                       </span>
-                      <span>{news?.meta_url?.path}</span> */}
+                      <span>{news?.age}</span>
                     </div>
                   </Link>
-                  <Link href={news?.url} className=" text-lg text-[#7697E3]">
+                  <Link
+                    href={news?.url}
+                    className=" text-lg text-blue-700 hover:underline"
+                  >
                     {news.title}
                   </Link>
                   <p

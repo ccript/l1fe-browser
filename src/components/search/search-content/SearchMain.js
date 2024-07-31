@@ -1,4 +1,3 @@
-import React from "react";
 import SearchResult from "./SearchResult";
 import AccordionResult from "./AccordionResult";
 import NextButton from "@/components/shared/NextButton";

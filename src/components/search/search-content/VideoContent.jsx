@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 import NextButton from "@/components/shared/NextButton";
 
-const VideoContent = ({ data, currentOffset,query }) => {
+const VideoContent = ({ data, currentOffset, query }) => {
   return (
     <div className="space-y-4 w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
       {data?.results?.length > 0 ? (
@@ -39,10 +39,13 @@ const VideoContent = ({ data, currentOffset,query }) => {
                     />
                     {video?.meta_url?.hostname} {video?.meta_url?.path}
                   </Link>
-                  <Link href={video?.url} className="text-lg text-[#7697E3]">
+                  <Link
+                    href={video?.url}
+                    className="text-lg text-blue-700 hover:underline"
+                  >
                     {video.title}
                   </Link>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm text-gray-400 line-clamp-1">
                     {video.description}
                   </div>
                   <div className="flex items-center gap-x-3 mt-2">

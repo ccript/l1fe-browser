@@ -22,8 +22,6 @@ const ImagesContent = ({ query }) => {
     fetchImageData();
   }, [query]);
 
-  console.log(imagesData);
-
   return (
     <section className="flex flex-col gap-4 px-3 text-start">
       {loading ? (

@@ -14,8 +14,6 @@ const SearchContent = ({ data, query }) => {
   const offset = searchParams.get("offset");
   const currentOffset = parseInt(offset) || 0;
 
-  // console.log(data);
-
   const renderContent = () => {
     switch (activeTab) {
       case "all":
