@@ -13,6 +13,16 @@ const formatReviewCount = (count) => {
   return count;
 };
 
+function extractDomain(url) {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.hostname;
+  } catch (error) {
+    console.error("Invalid URL:", error);
+    return null;
+  }
+}
+
 export const SearchInfoBox = ({ infobox, setActiveTab }) => {
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
@@ -28,54 +38,77 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
   return (
     <div className="flex flex-col gap-2 border rounded-xl">
       <div className="border-b">
-        <div className="space-y-2 p-6">
-          <div className="space-y-1">
-            <Link
-              href={`${infobox?.url}`}
-              className="text-2xl hover:text-blue-600 font-semibold"
-            >
-              {infobox?.title}
-            </Link>
-            <p className="text-neutral-500 text-sm">{infobox?.description}</p>
-            {infobox?.website_url && (
+        <div className="space-y-3 p-6">
+          <div className="flex gap-2">
+            <div className="space-y-1">
               <Link
-                href={`${infobox?.website_url}`}
-                className="flex gap-1 items-center text-neutral-500"
+                href={`${infobox?.url}`}
+                className="text-2xl hover:text-blue-600 font-semibold"
               >
-                <Globe size={15} />{" "}
-                <span className="text-blue-600">{infobox?.website_url}</span>
+                {infobox?.title}
               </Link>
+              {infobox?.description && (
+                <p className="text-neutral-500 text-sm">
+                  {infobox?.description}
+                </p>
+              )}
+              {infobox?.website_url && (
+                <Link
+                  href={`${infobox?.website_url}`}
+                  className="flex gap-1 items-center text-neutral-500"
+                >
+                  <Globe size={15} />{" "}
+                  <span className="text-blue-600">
+                    {extractDomain(infobox?.website_url)}
+                  </span>
+                </Link>
+              )}
+            </div>
+            {infobox?.images?.length === 1 && (
+              <button
+                onClick={handleImageTab}
+                className=" px-3 rounded-xl bg-neutral-100"
+              >
+                <Image
+                  src={infobox?.images[0]?.src}
+                  className="object-contain rounded-xl"
+                  width={160}
+                  height={160}
+                  alt={infobox?.images[0]?.alt}
+                />
+              </button>
             )}
           </div>
-
-          <button onClick={handleImageTab} className="grid grid-cols-2 gap-1">
-            <div className="col-span-2 sm:col-span-1 size-40 border content-center rounded-xl bg-neutral-100">
-              <Image
-                src={infobox?.images[0]?.src}
-                className="object-contain rounded-xl w-full h-full"
-                width={160}
-                height={160}
-                alt={infobox?.images[0]?.alt}
-              />
-            </div>
-            <div className="hidden xl:grid grid-cols-2 gap-1 col-span-2 sm:col-span-1">
-              {infobox?.images?.slice(1, 5).map((image, index) => (
-                <div key={index} className="col-span-1">
-                  <Image
-                    src={image?.src}
-                    className="object-cover w-[72px] h-[76px] rounded-xl"
-                    width={72}
-                    height={76}
-                    alt={image?.alt}
-                  />
-                </div>
-              ))}
-            </div>
-          </button>
+          {infobox?.images?.length > 1 && (
+            <button onClick={handleImageTab} className="grid grid-cols-2 gap-1">
+              <div className="col-span-2 sm:col-span-1 size-40 border content-center rounded-xl bg-neutral-100">
+                <Image
+                  src={infobox?.images[0]?.src}
+                  className="object-contain rounded-xl w-full h-full"
+                  width={160}
+                  height={160}
+                  alt={infobox?.images[0]?.alt}
+                />
+              </div>
+              <div className="hidden xl:grid grid-cols-2 gap-1 col-span-2 sm:col-span-1">
+                {infobox?.images?.slice(1, 5).map((image, index) => (
+                  <div key={index} className="col-span-1">
+                    <Image
+                      src={image?.src}
+                      className="object-cover w-[72px] h-[76px] rounded-xl"
+                      width={72}
+                      height={76}
+                      alt={image?.alt}
+                    />
+                  </div>
+                ))}
+              </div>
+            </button>
+          )}
 
           <div className="text-neutral-600">
             <p className="space-x-1">
-              {`${infobox.long_desc} `}
+              {infobox.long_desc && `${infobox.long_desc} `}
               {infobox?.providers.length > 0 && (
                 <Link
                   href={infobox?.providers[0]?.url}
@@ -152,7 +185,7 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
         </div>
       )}
 
-      {infobox?.profiles.length > 0 && (
+      {infobox?.profiles?.length > 0 && (
         <div className="space-y-2 py-2 px-6 border-b">
           <h1 className="font-semibold text-lg text-neutral-600">Profiles</h1>
           <div className="flex gap-2 items-center flex-wrap">
