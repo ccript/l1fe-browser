@@ -55,7 +55,12 @@ const SearchResult = ({ results }) => {
                 >
                   <h2 className=" text-lg truncate">{cluster?.title}</h2>
                 </Link>
-                <p className="line-clamp-2">{cluster?.description}</p>
+                <p
+                  className="line-clamp-2"
+                  dangerouslySetInnerHTML={{
+                    __html: `${cluster?.description} `,
+                  }}
+                />
               </div>
             ))}
           </div>
