@@ -67,11 +67,11 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
             {infobox?.images?.length === 1 && (
               <button
                 onClick={handleImageTab}
-                className=" px-3 rounded-xl bg-neutral-100"
+                className=" min-w-28 min-h-28 px-3 rounded-xl bg-neutral-100"
               >
                 <Image
                   src={infobox?.images[0]?.src}
-                  className="object-contain rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                   width={160}
                   height={160}
                   alt={infobox?.images[0]?.alt}
