@@ -12,7 +12,7 @@ const SearchContent = ({ data, query }) => {
   const [activeTab, setActiveTab] = useState("all");
   const searchParams = useSearchParams();
   const offset = searchParams.get("offset");
-  const currentOffset = parseInt(offset) || 1;
+  const currentOffset = parseInt(offset) || 0;
 
   // console.log(data);
 
