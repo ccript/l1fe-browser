@@ -7,11 +7,12 @@ import NewsContent from "@/components/news/NewsContent";
 import VideoContent from "./VideoContent";
 import ImagesContent from "@/components/images-route/ImagesContent";
 import { useSearchParams } from "next/navigation";
+
 const SearchContent = ({ data, query }) => {
   const [activeTab, setActiveTab] = useState("all");
   const searchParams = useSearchParams();
   const offset = searchParams.get("offset");
-  const currentOffset = parseInt(offset) || 1;
+  const currentOffset = parseInt(offset) || 0;
 
   // console.log(data);
 
@@ -21,9 +22,11 @@ const SearchContent = ({ data, query }) => {
         return (
           <SearchMain
             web={data?.web}
+            infobox={data?.infobox}
             faq={data?.faq}
             currentOffset={currentOffset}
             query={query}
+            setActiveTab={setActiveTab}
           />
         );
       case "images":
