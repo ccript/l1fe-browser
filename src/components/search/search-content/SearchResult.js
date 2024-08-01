@@ -7,15 +7,17 @@ const SearchResult = ({ results }) => {
   return (
     <>
       <div className="p-6 text-neutral-600 font-normal">
-        <div className="flex gap-2 item-center">
+        <div className="flex gap-2 items-center">
           {results?.meta_url.favicon && (
-            <Image
-              src={results?.meta_url?.favicon}
-              height={30}
-              width={30}
-              style={{ width: "30px", height: "30px" }}
-              alt={"search image"}
-            />
+            <div className=" w-[26px] h-[26px] flex items-center justify-center rounded bg-neutral-200">
+              <Image
+                src={results?.meta_url?.favicon}
+                height={20}
+                width={20}
+                style={{ width: "16px", height: "16px" }}
+                alt={"search image"}
+              />
+            </div>
           )}
 
           <div className="flex flex-col text-sm line-clamp-3">
@@ -31,12 +33,12 @@ const SearchResult = ({ results }) => {
         </div>
         <Link href={results?.url}>
           <h1 className="text-blue-700 text-lg hover:underline line-clamp-3">
-            <p className=" line-clamp-3">{results?.title}</p>
+            <p className=" line-clamp-3 text-xl">{results?.title}</p>
           </h1>
         </Link>
         <div className="flex">
           <p
-            className="text-neutral-600"
+            className="text-neutral-600 text-base"
             dangerouslySetInnerHTML={{
               __html: `${results?.age ? `${results?.age} -` : ""} ${
                 results?.description

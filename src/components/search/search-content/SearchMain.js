@@ -3,9 +3,9 @@ import AccordionResult from "./AccordionResult";
 import NextButton from "@/components/shared/NextButton";
 import { SearchInfoBox } from "./SearchInfoBox";
 
-function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
+function SearchMain({ web, faq, infobox, currentOffset, query }) {
   return (
-    <section className="flex flex-col gap-4 text-start py-2 my-6">
+    <section className="flex flex-col gap-4 text-start py-2 my-2">
       <div className="flex flex-col-reverse md:flex-row gap-3">
         <div className="text-sm 2xl:text-base w-full md:max-w-[672px]">
           {web?.results?.length > 0 ? (
@@ -25,7 +25,7 @@ function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
               </div>
             ))
           ) : (
-            <div className="flex items-center justify-start">
+            <div className="flex w-full items-center justify-center py-6">
               No content available at the moment.
             </div>
           )}
@@ -34,7 +34,8 @@ function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
           <div className="text-sm 2xl:text-base w-full md:max-w-[368px]">
             <SearchInfoBox
               infobox={infobox?.results[0]}
-              setActiveTab={setActiveTab}
+              query={query}
+              offset={currentOffset}
             />
           </div>
         )}

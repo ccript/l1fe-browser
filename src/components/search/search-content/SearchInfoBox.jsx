@@ -1,8 +1,10 @@
+"use client";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { useSearchParams } from "next/navigation";
 
 const formatReviewCount = (count) => {
   if (count >= 1000 && count < 1000000) {
@@ -23,14 +25,14 @@ function extractDomain(url) {
   }
 }
 
-export const SearchInfoBox = ({ infobox, setActiveTab }) => {
+export const SearchInfoBox = ({ infobox }) => {
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
-
+  const searchParams = useSearchParams();
   const isString = (value) => typeof value === "string";
-
-  const handleImageTab = () => {
-    setActiveTab("images");
+  const updatePathname = (newPathname) => {
+    const params = new URLSearchParams(searchParams);
+    return `${newPathname}?${params.toString()}`;
   };
 
   return (
@@ -63,8 +65,8 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
               )}
             </div>
             {infobox?.images?.length === 1 && (
-              <button
-                onClick={handleImageTab}
+              <Link
+                href={updatePathname("/images")}
                 className=" min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
               >
                 <Image
@@ -74,11 +76,14 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
                   height={80}
                   alt={infobox?.images[0]?.alt}
                 />
-              </button>
+              </Link>
             )}
           </div>
           {infobox?.images?.length > 1 && (
-            <button onClick={handleImageTab} className="grid grid-cols-2 gap-4">
+            <Link
+              href={updatePathname("/images")}
+              className="grid grid-cols-2 gap-4"
+            >
               <div className="col-span-2 sm:col-span-1 size-40 border content-center rounded-xl bg-neutral-100">
                 <Image
                   src={infobox?.images[0]?.src}
@@ -101,7 +106,7 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
                   </div>
                 ))}
               </div>
-            </button>
+            </Link>
           )}
 
           <div className="text-neutral-600">
