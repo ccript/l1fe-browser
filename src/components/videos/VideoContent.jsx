@@ -60,7 +60,7 @@ const VideoContent = async ({ offset, query }) => {
                     <div className="text-sm line-clamp-1">
                       {video.description}
                     </div>
-                    <div className="text-neutral-400 flex text-sm gap-3">
+                    <div className="text-neutral-500 flex text-sm gap-3">
                       <div className="">{video?.age}</div>
                       <div className="flex items-center gap-x-1">
                         <Eye size={10} />

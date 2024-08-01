@@ -2,8 +2,9 @@ import SearchResult from "./SearchResult";
 import AccordionResult from "./AccordionResult";
 import NextButton from "@/components/shared/NextButton";
 import { SearchInfoBox } from "./SearchInfoBox";
-
-function SearchMain({ web, faq, infobox, currentOffset, query }) {
+import NewsCarousel from "./NewsCarousel";
+import VideosCarousel from "./VideosCarousel";
+function SearchMain({ web, faq, infobox, currentOffset, query, news, videos }) {
   return (
     <section className="flex flex-col gap-4 text-start py-2 my-2">
       <div className="flex flex-col-reverse md:flex-row gap-3">
@@ -21,6 +22,12 @@ function SearchMain({ web, faq, infobox, currentOffset, query }) {
                 <SearchResult results={results} />
                 {faq?.results.length > 0 && index === 1 && (
                   <AccordionResult accordionData={faq?.results} />
+                )}
+                {videos?.results?.length > 0 && index === 3 && (
+                  <VideosCarousel videos={videos} />
+                )}
+                {news?.results?.length > 0 && index === 5 && (
+                  <NewsCarousel news={news} />
                 )}
               </div>
             ))
