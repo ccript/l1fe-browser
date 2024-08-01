@@ -78,7 +78,7 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
             )}
           </div>
           {infobox?.images?.length > 1 && (
-            <button onClick={handleImageTab} className="grid grid-cols-2 gap-1">
+            <button onClick={handleImageTab} className="grid grid-cols-2 gap-4">
               <div className="col-span-2 sm:col-span-1 size-40 border content-center rounded-xl bg-neutral-100">
                 <Image
                   src={infobox?.images[0]?.src}

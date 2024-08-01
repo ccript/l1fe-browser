@@ -5,9 +5,9 @@ import { SearchInfoBox } from "./SearchInfoBox";
 
 function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
   return (
-    <section className="flex flex-col gap-4 container mx-auto px-3 md:px-20 2xl:px-6 text-start py-2 my-6">
-      <div className="flex flex-col-reverse md:grid md:grid-flow-row md:grid-cols-12 md:justify-center md:w-full md:gap-6">
-        <div className="col-span-full md:col-span-8 text-sm 2xl:text-base">
+    <section className="flex flex-col gap-4 text-start py-2 my-6">
+      <div className="flex flex-col-reverse md:flex-row gap-3">
+        <div className="text-sm 2xl:text-base w-full md:max-w-[672px]">
           {web?.results?.length > 0 ? (
             web?.results?.map((results, index) => (
               <div
@@ -31,7 +31,7 @@ function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
           )}
         </div>
         {infobox?.results?.length > 0 && (
-          <div className=" col-span-full md:col-span-4 text-sm 2xl:text-base">
+          <div className="text-sm 2xl:text-base w-full md:max-w-[368px]">
             <SearchInfoBox
               infobox={infobox?.results[0]}
               setActiveTab={setActiveTab}

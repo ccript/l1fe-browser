@@ -6,8 +6,8 @@ import { ImagesIcon, Newspaper, Film } from "lucide-react";
 
 const NavigationLinks = ({ activeTab, setActiveTab }) => {
   return (
-    <div className="flex w-full border-b container mx-auto px-3 md:px-24 2xl:px-6 text-start pt-2">
-      <div className="flex items-center w-full justify-between max-w-[630px] 2xl:max-w-[650px]">
+    <div className="flex w-full text-start pt-2">
+      <div className="flex items-center w-full justify-between max-w-[672px] 2xl:max-w-[672px]">
         <div className="flex gap-3 text-neutral-400">
           <button
             onClick={() => setActiveTab("all")}

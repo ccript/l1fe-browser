@@ -4,14 +4,11 @@ import NextButton from "../shared/NextButton";
 import { Dot } from "lucide-react";
 const NewsContent = ({ data, currentOffset, query }) => {
   return (
-    <div className="w-full space-y-4 container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
+    <div className="w-full space-y-4 text-start py-2">
       {data?.results?.length > 0 ? (
         data?.results?.map((news, index) => {
           return (
-            <div
-              key={index}
-              className="max-w-[630px] 2xl:max-w-[630px] border rounded-2xl"
-            >
+            <div key={index} className="max-w-[672px] border rounded-2xl">
               <div className="flex gap-4 p-5">
                 <div className="">
                   <Link

@@ -7,14 +7,11 @@ import NextButton from "@/components/shared/NextButton";
 
 const VideoContent = ({ data, currentOffset, query }) => {
   return (
-    <div className="space-y-4 w-full container mx-auto px-3 md:px-24 2xl:px-6 text-start py-2">
+    <div className="space-y-4 w-full text-start py-2">
       {data?.results?.length > 0 ? (
         data?.results.map((video, index) => {
           return (
-            <div
-              key={index}
-              className="max-w-[730px] 2xl:max-w-[730px] border rounded-2xl"
-            >
+            <div key={index} className="max-w-[672px] border rounded-2xl">
               <div className="flex gap-4 p-5">
                 <Link href={video.url} className="min-w-[192px]">
                   <Image

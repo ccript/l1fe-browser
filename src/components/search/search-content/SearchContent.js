@@ -56,9 +56,13 @@ const SearchContent = ({ data, query }) => {
 
   return (
     <>
-      <Navbar defaultSearch={data?.query?.original} />
-      <NavigationLinks activeTab={activeTab} setActiveTab={setActiveTab} />
-      {renderContent()}
+      <aside className="pr-6 md:p-0">
+        <Navbar defaultSearch={data?.query?.original} />
+      </aside>
+      <aside className="border-b m-0 px-6 md:ps-40">
+        <NavigationLinks activeTab={activeTab} setActiveTab={setActiveTab} />
+      </aside>
+      <div className="px-6 md:ps-40">{renderContent()}</div>
     </>
   );
 };

@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex flex-col h-[100dvh] w-screen">
+        <main className=" flex flex-col h-[100dvh] w-screen">
           <div className="h-full w-full text-center overflow-hidden">
             <Toaster position="top-center" />
             {children}
