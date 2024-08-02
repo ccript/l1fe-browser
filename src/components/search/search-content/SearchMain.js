@@ -7,7 +7,7 @@ import VideosCarousel from "./VideosCarousel";
 function SearchMain({ web, faq, infobox, currentOffset, query, news, videos }) {
   return (
     <section className="flex flex-col gap-4 text-start py-2 my-2">
-      <div className="flex flex-col-reverse md:flex-row gap-3">
+      <div className="flex flex-col-reverse md:flex-row gap-5">
         <div className="text-sm 2xl:text-base w-full md:max-w-[672px]">
           {web?.results?.length > 0 ? (
             web?.results?.map((results, index) => (

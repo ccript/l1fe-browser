@@ -7,9 +7,11 @@ const Search = async ({ searchParams }) => {
   const data = await SearchAction(q, offset);
   return (
     <>
-      <Navbar searchParams={searchParams} />
+      <div className=" md:min-w-[1250px]">
+        <Navbar searchParams={searchParams} />
+      </div>
       <section className="w-full text-start">
-        <div className="px-6 md:ps-36">
+        <div className="px-6 md:ps-36 md:min-w-[1250px]">
           <SearchContent data={data} query={q} offset={offset} />
         </div>
       </section>

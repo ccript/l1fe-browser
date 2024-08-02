@@ -4,6 +4,7 @@ import MapResult from "./MapResult";
 import Image from "next/image";
 
 const SearchResult = ({ results }) => {
+  console.log(results);
   return (
     <>
       <div className="p-6 text-neutral-600 font-normal">
@@ -26,19 +27,19 @@ const SearchResult = ({ results }) => {
             </p>
             <div className="text-neutral-500 font-medium ">
               <p className="line-clamp-3 text-xs">
-                {results?.meta_url?.path || results?.meta_url?.netloc}
+                {results?.meta_url?.netloc} {results?.meta_url?.path}
               </p>{" "}
             </div>
           </div>
         </div>
         <Link href={results?.url}>
           <h1 className="text-blue-700 text-lg hover:underline line-clamp-3">
-            <p className=" line-clamp-3 text-xl">{results?.title}</p>
+            <p className=" line-clamp-3 text-lg">{results?.title}</p>
           </h1>
         </Link>
         <div className="flex">
           <p
-            className="text-neutral-600 text-base"
+            className="text-neutral-600 text-sm"
             dangerouslySetInnerHTML={{
               __html: `${results?.age ? `${results?.age} -` : ""} ${
                 results?.description

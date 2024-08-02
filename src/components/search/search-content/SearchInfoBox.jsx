@@ -78,11 +78,24 @@ export const SearchInfoBox = ({ infobox }) => {
                 />
               </Link>
             )}
+            <Link
+              href={updatePathname("/images")}
+              className=" block md:hidden min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
+            >
+              <Image
+                src={infobox?.images[0]?.src}
+                className=" size-20 object-contain rounded-xl"
+                width={80}
+                height={80}
+                alt={infobox?.images[0]?.alt}
+              />
+            </Link>
           </div>
+
           {infobox?.images?.length > 1 && (
             <Link
               href={updatePathname("/images")}
-              className="grid grid-cols-2 gap-4"
+              className="hidden md:grid grid-cols-2 gap-4"
             >
               <div className="col-span-2 sm:col-span-1 size-40 border content-center rounded-xl bg-neutral-100">
                 <Image
@@ -93,7 +106,7 @@ export const SearchInfoBox = ({ infobox }) => {
                   alt={infobox?.images[0]?.alt}
                 />
               </div>
-              <div className="hidden xl:grid grid-cols-2 gap-1 col-span-2 sm:col-span-1">
+              <div className="hidden md:grid grid-cols-2 gap-1 col-span-2 sm:col-span-1">
                 {infobox?.images?.slice(1, 5).map((image, index) => (
                   <div key={index} className="col-span-1">
                     <Image

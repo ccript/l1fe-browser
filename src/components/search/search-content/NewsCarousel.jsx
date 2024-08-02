@@ -20,10 +20,7 @@ const NewsCarousel = ({ news }) => {
       <Carousel className="relative w-full">
         <CarouselContent className="flex">
           {news?.results?.map((item, index) => (
-            <CarouselItem
-              key={index}
-              className="md:basis-1/2 lg:basis-1/3 max-w-[250px]"
-            >
+            <CarouselItem key={index} className="basis-1/3 max-w-[250px]">
               <Link href={item?.url} className="w-full">
                 <div className="p-2 gap-2 flex flex-col border rounded-xl">
                   <Image

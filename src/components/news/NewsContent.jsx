@@ -35,12 +35,12 @@ const NewsContent = async ({ offset, query }) => {
                     </Link>
                     <Link
                       href={news?.url}
-                      className=" text-xl text-blue-700 hover:underline"
+                      className=" text-lg text-blue-700 hover:underline"
                     >
                       {news.title}
                     </Link>
                     <p
-                      className="text-base text-gray-500 line-clamp-3"
+                      className="text-sm text-gray-500 line-clamp-3"
                       dangerouslySetInnerHTML={{ __html: news?.description }}
                     />
                   </div>

@@ -21,7 +21,7 @@ const VideosCarousel = ({ videos }) => {
       <Carousel className="relative w-full">
         <CarouselContent className="flex">
           {videos?.results?.map((item, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={index} className="basis-1/3">
               <Link href={item?.url} className="w-full">
                 <div className="p-2 gap-2 flex flex-col border rounded-xl max-w-[250px] min-h-[230px]">
                   <Image

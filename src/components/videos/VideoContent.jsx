@@ -53,7 +53,7 @@ const VideoContent = async ({ offset, query }) => {
                     </Link>
                     <Link
                       href={video?.url}
-                      className="text-xl line-clamp-2 text-blue-700 hover:underline"
+                      className="text-lg line-clamp-2 text-blue-700 hover:underline"
                     >
                       {video.title}
                     </Link>
