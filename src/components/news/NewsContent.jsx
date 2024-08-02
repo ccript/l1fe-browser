@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SearchNewsAction } from "../../../actions/search/SearchAction";
+import { SearchNewsAction } from "@/actions/search/SearchAction";
 import Link from "next/link";
 import NextButton from "../shared/NextButton";
 import { Dot } from "lucide-react";

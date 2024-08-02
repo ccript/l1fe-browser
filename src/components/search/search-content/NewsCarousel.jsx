@@ -41,7 +41,7 @@ const NewsCarousel = ({ news }) => {
                       {item?.meta_url?.netloc}
                     </p>
                   </span>
-                  <h3 className="text-blue-700 text-xl line-clamp-3 hover:underline">
+                  <h3 className="text-blue-700 text-sm line-clamp-3 hover:underline">
                     {item?.title}
                   </h3>
                   <span className="text-xs text-neutral-500">{item?.age}</span>

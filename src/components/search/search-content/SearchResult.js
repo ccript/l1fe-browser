@@ -4,10 +4,9 @@ import MapResult from "./MapResult";
 import Image from "next/image";
 
 const SearchResult = ({ results }) => {
-  console.log(results);
   return (
     <>
-      <div className="p-6 text-neutral-600 font-normal">
+      <div className=" text-neutral-600 font-normal">
         <div className="flex gap-2 items-center">
           {results?.meta_url.favicon && (
             <div className=" w-[26px] h-[26px] flex items-center justify-center rounded bg-neutral-200">

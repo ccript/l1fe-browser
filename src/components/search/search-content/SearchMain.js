@@ -4,52 +4,95 @@ import NextButton from "@/components/shared/NextButton";
 import { SearchInfoBox } from "./SearchInfoBox";
 import NewsCarousel from "./NewsCarousel";
 import VideosCarousel from "./VideosCarousel";
-function SearchMain({ web, faq, infobox, currentOffset, query, news, videos }) {
+
+function SearchMain({ currentOffset, query, data }) {
+  const renderMixedContent = () => {
+    const content = [];
+    let webGroup = [];
+
+    data?.mixed?.main.forEach((item, index) => {
+      if (item.type === "web") {
+        webGroup.push(
+          <div key={`web-${item.index}`} className="">
+            <SearchResult results={data?.web?.results[item?.index]} />
+          </div>
+        );
+      } else {
+        if (webGroup.length > 0) {
+          content.push(
+            <div key={`web-group-${index}`} className=" p-6 border rounded-xl">
+              {webGroup}
+            </div>
+          );
+          webGroup = [];
+        }
+        switch (item.type) {
+          case "news":
+            content.push(
+              <div key={`news-${index}`} className="">
+                <NewsCarousel news={data?.news} />
+              </div>
+            );
+            break;
+          case "faq":
+            content.push(
+              <div key={`faq-${index}`} className="">
+                <AccordionResult accordionData={data?.faq?.results} />
+              </div>
+            );
+            break;
+          case "videos":
+            content.push(
+              <div key={`videos-${index}`} className="">
+                <VideosCarousel videos={data?.videos} />
+              </div>
+            );
+            break;
+          default:
+            break;
+        }
+      }
+    });
+    if (webGroup.length > 0) {
+      content.push(
+        <div
+          key={`web-group-end`}
+          className="border space-y-6 rounded-lg p-6 mb-4"
+        >
+          {webGroup}
+        </div>
+      );
+    }
+
+    return content;
+  };
+
   return (
     <section className="flex flex-col gap-4 text-start py-2 my-2">
       <div className="flex flex-col-reverse md:flex-row gap-5">
-        <div className="text-sm 2xl:text-base w-full md:max-w-[672px]">
-          {web?.results?.length > 0 ? (
-            web?.results?.map((results, index) => (
-              <div
-                key={index}
-                className={` ${
-                  index === 0
-                    ? "border-x border-t rounded-t-xl border-opacity-40"
-                    : ""
-                }`}
-              >
-                <SearchResult results={results} />
-                {faq?.results.length > 0 && index === 1 && (
-                  <AccordionResult accordionData={faq?.results} />
-                )}
-                {videos?.results?.length > 0 && index === 3 && (
-                  <VideosCarousel videos={videos} />
-                )}
-                {news?.results?.length > 0 && index === 5 && (
-                  <NewsCarousel news={news} />
-                )}
-              </div>
-            ))
+        <div className="text-sm 2xl:text-base space-y-4 w-full md:max-w-[672px]">
+          {data?.mixed?.main?.length > 0 ? (
+            renderMixedContent()
           ) : (
             <div className="flex w-full items-center justify-center py-6">
               No content available at the moment.
             </div>
           )}
         </div>
-        {infobox?.results?.length > 0 && (
+        {data?.infobox?.results?.length > 0 && (
           <div className="text-sm 2xl:text-base w-full md:max-w-[368px]">
             <SearchInfoBox
-              infobox={infobox?.results[0]}
+              infobox={data?.infobox?.results[0]}
               query={query}
+              data={data}
               offset={currentOffset}
             />
           </div>
         )}
       </div>
-      {web?.results?.length > 0 && (
+      {data?.web?.results?.length > 0 && (
         <NextButton currentOffset={currentOffset} query={query} />
-      )}{" "}
+      )}
     </section>
   );
 }
