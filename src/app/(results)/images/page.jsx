@@ -1,4 +1,3 @@
-import { SearchImageAction } from "../../../../actions/search/SearchAction";
 import Navbar from "@/components/navbar/Navbar";
 import ImagesContent from "@/components/images-route/ImagesContent";
 import { Suspense } from "react";

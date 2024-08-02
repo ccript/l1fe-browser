@@ -1,5 +1,5 @@
 import ImagesDisplay from "./ImagesDisplay";
-import { SearchImageAction } from "../../../actions/search/SearchAction";
+import { SearchImageAction } from "@/actions/search/SearchAction";
 
 const ImagesContent = async ({ query, offset }) => {
   try {

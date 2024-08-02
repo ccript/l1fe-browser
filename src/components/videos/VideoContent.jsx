@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 import NextButton from "@/components/shared/NextButton";
-import { SearchVideoAction } from "../../../actions/search/SearchAction";
+import { SearchVideoAction } from "@/actions/search/SearchAction";
 
 const formatViewsCount = (count) => {
   if (count >= 1000 && count < 1000000) {

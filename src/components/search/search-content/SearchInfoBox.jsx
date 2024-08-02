@@ -25,7 +25,8 @@ function extractDomain(url) {
   }
 }
 
-export const SearchInfoBox = ({ infobox }) => {
+export const SearchInfoBox = ({ infobox, data }) => {
+  console.log(data);
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
   const searchParams = useSearchParams();
@@ -39,7 +40,7 @@ export const SearchInfoBox = ({ infobox }) => {
     <div className="flex flex-col gap-2 border rounded-xl">
       <div className="border-b">
         <div className="space-y-3 p-6">
-          <div className="flex gap-3 justify-between">
+          <div className="flex items-center gap-3 justify-between">
             <div className="space-y-1">
               <Link
                 href={`${infobox?.url}`}
@@ -65,31 +66,33 @@ export const SearchInfoBox = ({ infobox }) => {
               )}
             </div>
             {infobox?.images?.length === 1 && (
-              <Link
-                href={updatePathname("/images")}
-                className=" min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
-              >
-                <Image
-                  src={infobox?.images[0]?.src}
-                  className=" size-20 object-contain rounded-xl"
-                  width={80}
-                  height={80}
-                  alt={infobox?.images[0]?.alt}
-                />
-              </Link>
+              <>
+                <Link
+                  href={updatePathname("/images")}
+                  className=" hidden md:block min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
+                >
+                  <Image
+                    src={infobox?.images[0]?.src}
+                    className=" size-20 object-contain rounded-xl"
+                    width={80}
+                    height={80}
+                    alt={infobox?.images[0]?.alt}
+                  />
+                </Link>
+                <Link
+                  href={updatePathname("/images")}
+                  className=" block md:hidden min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
+                >
+                  <Image
+                    src={infobox?.images[0]?.src}
+                    className=" size-20 object-contain rounded-xl"
+                    width={80}
+                    height={80}
+                    alt={infobox?.images[0]?.alt}
+                  />
+                </Link>
+              </>
             )}
-            <Link
-              href={updatePathname("/images")}
-              className=" block md:hidden min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
-            >
-              <Image
-                src={infobox?.images[0]?.src}
-                className=" size-20 object-contain rounded-xl"
-                width={80}
-                height={80}
-                alt={infobox?.images[0]?.alt}
-              />
-            </Link>
           </div>
 
           {infobox?.images?.length > 1 && (
