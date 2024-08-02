@@ -10,7 +10,7 @@ import Link from "next/link";
 const AccordionResult = ({ accordionData }) => {
   return (
     <div className="relative border-x border-t rounded-t-xl border-opacity-40 w-full">
-      <div className="p-6 pt-12">
+      <div className="p-6">
         <h1 className="text-base font-semibold text-neutral-500">
           People also ask
         </h1>
@@ -49,7 +49,6 @@ const AccordionResult = ({ accordionData }) => {
                   </h1>
                 </Link>
               </AccordionContent>
-
             </AccordionItem>
           );
         })}

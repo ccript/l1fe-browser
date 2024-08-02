@@ -16,7 +16,7 @@ const ImageSummary = ({ selectedImage }) => {
   };
 
   return (
-    <div className="sticky top-20 max-h-[calc(100vh-8rem)] 2xl:max-h-[calc(100vh-10rem)] overflow-y-auto no-scrollbar pb-3 space-y-8">
+    <div className="sticky top-20 max-h-[calc(100vh-8rem)] 2xl:max-h-[calc(100vh-10rem)] w-full overflow-y-auto no-scrollbar pb-3 space-y-8">
       <div className="w-full">
         <div className="space-y-1">
           <h1 className="text-lg font-medium line-clamp-2">

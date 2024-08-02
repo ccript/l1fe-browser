@@ -1,14 +1,14 @@
-import React from "react";
 import SearchResult from "./SearchResult";
 import AccordionResult from "./AccordionResult";
 import NextButton from "@/components/shared/NextButton";
 import { SearchInfoBox } from "./SearchInfoBox";
-
-function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
+import NewsCarousel from "./NewsCarousel";
+import VideosCarousel from "./VideosCarousel";
+function SearchMain({ web, faq, infobox, currentOffset, query, news, videos }) {
   return (
-    <section className="flex flex-col gap-4 container mx-auto px-3 md:px-20 2xl:px-6 text-start py-2 my-6">
-      <div className="flex flex-col-reverse md:grid md:grid-flow-row md:grid-cols-12 md:justify-center md:w-full md:gap-6">
-        <div className="col-span-full md:col-span-8 text-sm 2xl:text-base">
+    <section className="flex flex-col gap-4 text-start py-2 my-2">
+      <div className="flex flex-col-reverse md:flex-row gap-5">
+        <div className="text-sm 2xl:text-base w-full md:max-w-[672px]">
           {web?.results?.length > 0 ? (
             web?.results?.map((results, index) => (
               <div
@@ -23,19 +23,26 @@ function SearchMain({ web, faq, infobox, currentOffset, query, setActiveTab }) {
                 {faq?.results.length > 0 && index === 1 && (
                   <AccordionResult accordionData={faq?.results} />
                 )}
+                {videos?.results?.length > 0 && index === 3 && (
+                  <VideosCarousel videos={videos} />
+                )}
+                {news?.results?.length > 0 && index === 5 && (
+                  <NewsCarousel news={news} />
+                )}
               </div>
             ))
           ) : (
-            <div className="flex items-center justify-start">
+            <div className="flex w-full items-center justify-center py-6">
               No content available at the moment.
             </div>
           )}
         </div>
         {infobox?.results?.length > 0 && (
-          <div className=" col-span-full md:col-span-4 text-sm 2xl:text-base">
+          <div className="text-sm 2xl:text-base w-full md:max-w-[368px]">
             <SearchInfoBox
               infobox={infobox?.results[0]}
-              setActiveTab={setActiveTab}
+              query={query}
+              offset={currentOffset}
             />
           </div>
         )}

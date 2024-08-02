@@ -17,7 +17,7 @@ const ImagesDisplay = ({ imagesData }) => {
             selectedImageIndex={selectedImageIndex}
           />
         </div>
-        <div className="relative col-span-3 2xl:col-span-2 text-sm 2xl:text-base border-s py-6 px-3">
+        <div className="relative col-span-3 2xl:col-span-2 text-sm 2xl:text-base border-s py-6 ps-3">
           <ImageSummary selectedImage={imagesData[selectedImageIndex]} />
         </div>
       </div>

@@ -1,8 +1,10 @@
+"use client";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { useSearchParams } from "next/navigation";
 
 const formatReviewCount = (count) => {
   if (count >= 1000 && count < 1000000) {
@@ -23,23 +25,21 @@ function extractDomain(url) {
   }
 }
 
-export const SearchInfoBox = ({ infobox, setActiveTab }) => {
+export const SearchInfoBox = ({ infobox }) => {
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
-
+  const searchParams = useSearchParams();
   const isString = (value) => typeof value === "string";
-
-  const handleImageTab = () => {
-    setActiveTab("images");
+  const updatePathname = (newPathname) => {
+    const params = new URLSearchParams(searchParams);
+    return `${newPathname}?${params.toString()}`;
   };
-
-  console.log(infobox);
 
   return (
     <div className="flex flex-col gap-2 border rounded-xl">
       <div className="border-b">
         <div className="space-y-3 p-6">
-          <div className="flex gap-2">
+          <div className="flex gap-3 justify-between">
             <div className="space-y-1">
               <Link
                 href={`${infobox?.url}`}
@@ -65,22 +65,38 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
               )}
             </div>
             {infobox?.images?.length === 1 && (
-              <button
-                onClick={handleImageTab}
-                className=" min-w-28 min-h-28 px-3 rounded-xl bg-neutral-100"
+              <Link
+                href={updatePathname("/images")}
+                className=" min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
               >
                 <Image
                   src={infobox?.images[0]?.src}
-                  className="w-full h-full object-contain rounded-xl"
-                  width={160}
-                  height={160}
+                  className=" size-20 object-contain rounded-xl"
+                  width={80}
+                  height={80}
                   alt={infobox?.images[0]?.alt}
                 />
-              </button>
+              </Link>
             )}
+            <Link
+              href={updatePathname("/images")}
+              className=" block md:hidden min-w-20 min-h-20 px-2 py-1 rounded-xl bg-neutral-100"
+            >
+              <Image
+                src={infobox?.images[0]?.src}
+                className=" size-20 object-contain rounded-xl"
+                width={80}
+                height={80}
+                alt={infobox?.images[0]?.alt}
+              />
+            </Link>
           </div>
+
           {infobox?.images?.length > 1 && (
-            <button onClick={handleImageTab} className="grid grid-cols-2 gap-1">
+            <Link
+              href={updatePathname("/images")}
+              className="hidden md:grid grid-cols-2 gap-4"
+            >
               <div className="col-span-2 sm:col-span-1 size-40 border content-center rounded-xl bg-neutral-100">
                 <Image
                   src={infobox?.images[0]?.src}
@@ -90,7 +106,7 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
                   alt={infobox?.images[0]?.alt}
                 />
               </div>
-              <div className="hidden xl:grid grid-cols-2 gap-1 col-span-2 sm:col-span-1">
+              <div className="hidden md:grid grid-cols-2 gap-1 col-span-2 sm:col-span-1">
                 {infobox?.images?.slice(1, 5).map((image, index) => (
                   <div key={index} className="col-span-1">
                     <Image
@@ -103,7 +119,7 @@ export const SearchInfoBox = ({ infobox, setActiveTab }) => {
                   </div>
                 ))}
               </div>
-            </button>
+            </Link>
           )}
 
           <div className="text-neutral-600">

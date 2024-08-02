@@ -1,42 +1,31 @@
-import { useState, useEffect } from "react";
 import ImagesDisplay from "./ImagesDisplay";
 import { SearchImageAction } from "../../../actions/search/SearchAction";
-import ImagesSkeletonLoader from "../skeleton/ImageSkeletonLoader";
-const ImagesContent = ({ query }) => {
-  const [imagesData, setImagesData] = useState();
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchImageData = async () => {
-      try {
-        setLoading(true);
-        const data = await SearchImageAction(query);
-        setImagesData(data);
-      } catch (error) {
-        console.error("Error fetching image data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+const ImagesContent = async ({ query, offset }) => {
+  try {
+    const data = await SearchImageAction(query, offset);
 
-    fetchImageData();
-  }, [query]);
-
-  console.log(imagesData);
-
-  return (
-    <section className="flex flex-col gap-4 px-3 text-start">
-      {loading ? (
-        <ImagesSkeletonLoader />
-      ) : imagesData?.results.length > 0 ? (
-        <ImagesDisplay imagesData={imagesData.results} />
-      ) : (
-        <div className="flex items-center mt-8 lg:container lg:ml-16 ">
-          No content available at the moment.
+    return (
+      <section className="flex flex-col gap-4 px-3 text-start">
+        {data?.results.length > 0 ? (
+          <ImagesDisplay imagesData={data.results} />
+        ) : (
+          <div className="flex items-center mt-8 lg:container lg:ml-16">
+            No content available at the moment.
+          </div>
+        )}
+      </section>
+    );
+  } catch (error) {
+    console.error("Error fetching image data:", error);
+    return (
+      <section className="flex flex-col gap-4 px-3 text-start">
+        <div className="flex items-center mt-8 lg:container lg:ml-16">
+          Error loading images.
         </div>
-      )}
-    </section>
-  );
+      </section>
+    );
+  }
 };
 
 export default ImagesContent;

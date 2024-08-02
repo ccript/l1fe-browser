@@ -4,69 +4,70 @@ import MapResult from "./MapResult";
 import Image from "next/image";
 
 const SearchResult = ({ results }) => {
+  console.log(results);
   return (
     <>
-      <div className="p-6">
-        <div className="flex gap-3 item-center">
+      <div className="p-6 text-neutral-600 font-normal">
+        <div className="flex gap-2 items-center">
           {results?.meta_url.favicon && (
-            <Image
-              src={results?.meta_url.favicon}
-              height={30}
-              width={30}
-              style={{ width: "30px", height: "30px" }}
-              alt={"search image"}
-            />
+            <div className=" w-[26px] h-[26px] flex items-center justify-center rounded bg-neutral-200">
+              <Image
+                src={results?.meta_url?.favicon}
+                height={20}
+                width={20}
+                style={{ width: "16px", height: "16px" }}
+                alt={"search image"}
+              />
+            </div>
           )}
 
-          <div className="flex flex-col text-xs gap-1 line-clamp-3">
-            <p className="line-clamp-3">{results?.title}</p>
+          <div className="flex flex-col text-sm line-clamp-3">
+            <p className="line-clamp-3 font-medium">
+              {results?.profile?.name || results?.title}
+            </p>
             <div className="text-neutral-500 font-medium ">
-              <p className="line-clamp-3">{results?.meta_url?.path}</p>{" "}
+              <p className="line-clamp-3 text-xs">
+                {results?.meta_url?.netloc} {results?.meta_url?.path}
+              </p>{" "}
             </div>
           </div>
         </div>
         <Link href={results?.url}>
           <h1 className="text-blue-700 text-lg hover:underline line-clamp-3">
-            <p className=" line-clamp-3">{results?.url}</p>
+            <p className=" line-clamp-3 text-lg">{results?.title}</p>
           </h1>
         </Link>
         <div className="flex">
           <p
-            className=""
-            dangerouslySetInnerHTML={{ __html: results?.description }}
+            className="text-neutral-600 text-sm"
+            dangerouslySetInnerHTML={{
+              __html: `${results?.age ? `${results?.age} -` : ""} ${
+                results?.description
+              } `,
+            }}
           />
-          {/* {results?.meta_url.favicon && (
-            <Image
-              src={results?.meta_url.favicon}
-              height={100}
-              width={100}
-              style={{ width: '120px', height: "auto" }}
-              alt={"search_img_1"}
-            />
-          )} */}
         </div>
-        {/* {results?.contact && (
-          <div className="flex flex-col gap-2  text-sm">
-            <div className="flex justify-between w-full gap-2 mt-4">
-              <div className="w-1/2">
-                <span className="font-semibold">Price: </span>{" "}
-                {results?.contact?.price}
+
+        {results?.cluster?.length > 0 && (
+          <div className="grid grid-cols-2 gap-4 w-[80%] py-4">
+            {results?.cluster.map((cluster, index) => (
+              <div key={index} className="space-y-1 rounded">
+                <Link
+                  href={cluster?.url}
+                  className="text-blue-700 hover:underline"
+                >
+                  <h2 className=" text-lg truncate">{cluster?.title}</h2>
+                </Link>
+                <p
+                  className="line-clamp-2"
+                  dangerouslySetInnerHTML={{
+                    __html: `${cluster?.description} `,
+                  }}
+                />
               </div>
-              <div className="w-1/2">
-                <span className="font-semibold"> Call: </span>
-                <span className="hover:underline cursor-pointer text-blue-700">
-                  {results?.contact?.phone}
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-between w-full">
-              <div className="w-1/2">
-                <span className="font-semibold">Address:</span>{" "}
-                {results?.contact?.address}
-              </div>
-            </div>
+            ))}
           </div>
-        )} */}
+        )}
       </div>
       {/* {results?.mapData?.length > 0 && <MapResult mapData={results?.mapData} />} */}
     </>
